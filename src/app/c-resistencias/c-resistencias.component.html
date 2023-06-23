@@ -1,0 +1,115 @@
+<div class="contenedor">
+    <div class="col-xs-6" id="divR">
+        <div class="bootstrap-responsive">
+            <span>
+                <h1>Calculadora de omhs</h1>
+            </span>
+
+            <div class="control-group">
+                <label>1° Banda De Color:</label>
+                <select class="form-select" [(ngModel)]="linea1">
+                <option selected>Selecciona el color de la banda</option>
+                <option value="black" [ngStyle]="{ 'background-color': 'black', 'color': 'white' }">Negro</option>
+                <option value="chocolate" [ngStyle]="{ 'background-color': 'chocolate' }">Marron</option>
+                <option value="red" [ngStyle]="{ 'background-color': 'red', 'color': 'white' }">Rojo</option>
+                <option value="orange" [ngStyle]="{ 'background-color': 'orange' }">Naranja</option>
+                <option value="yellow" [ngStyle]="{ 'background-color': 'yellow' }">Amarillo</option>
+                <option value="green" [ngStyle]="{ 'background-color': 'green', 'color': 'white' }">Verde</option>
+                <option value="blue" [ngStyle]="{ 'background-color': 'blue', 'color': 'white' }">Azul</option>
+                <option value="purple" [ngStyle]="{ 'background-color': 'purple', 'color': 'white' }">Violeta</option>
+                <option value="grey" [ngStyle]="{ 'background-color': 'grey' }">Gris</option>
+                <option value="white" [ngStyle]="{ 'background-color': 'white', 'color': 'black' }">Blanco</option>
+                </select>
+            </div>
+            
+            <div class="control-group">
+                <label class="my-3">2° Banda De Color:</label>
+                <select class="form-select" [(ngModel)]="linea2" aria-label="Default select example">
+                <option selected>Selecciona el color de la banda</option>
+                <option value="black" [ngStyle]="{ 'background-color': 'black', 'color': 'white' }">Negro</option>
+                <option value="chocolate" [ngStyle]="{ 'background-color': 'chocolate' }">Marron</option>
+                <option value="red" [ngStyle]="{ 'background-color': 'red', 'color': 'white' }">Rojo</option>
+                <option value="orange" [ngStyle]="{ 'background-color': 'orange' }">Naranja</option>
+                <option value="yellow" [ngStyle]="{ 'background-color': 'yellow' }">Amarillo</option>
+                <option value="green" [ngStyle]="{ 'background-color': 'green', 'color': 'white' }">Verde</option>
+                <option value="blue" [ngStyle]="{ 'background-color': 'blue', 'color': 'white' }">Azul</option>
+                <option value="purple" [ngStyle]="{ 'background-color': 'purple', 'color': 'white' }">Violeta</option>
+                <option value="grey" [ngStyle]="{ 'background-color': 'grey' }">Gris</option>
+                <option value="white" [ngStyle]="{ 'background-color': 'white', 'color': 'black' }">Blanco</option>
+                </select>
+            </div>
+            
+            <div class="control-group">
+                <label class="my-3">Multiplicador:</label>
+                <select class="form-select" [(ngModel)]="linea3" aria-label="Default select example">
+                <option selected>Selecciona el color de la banda</option>
+                <option value="black" [ngStyle]="{ 'background-color': 'black', 'color': 'white' }">Negro</option>
+                <option value="chocolate" [ngStyle]="{ 'background-color': 'chocolate' }">Marron</option>
+                <option value="red" [ngStyle]="{ 'background-color': 'red', 'color': 'white' }">Rojo</option>
+                <option value="orange" [ngStyle]="{ 'background-color': 'orange' }">Naranja</option>
+                <option value="yellow" [ngStyle]="{ 'background-color': 'yellow' }">Amarillo</option>
+                <option value="green" [ngStyle]="{ 'background-color': 'green', 'color': 'white' }">Verde</option>
+                <option value="blue" [ngStyle]="{ 'background-color': 'blue', 'color': 'white' }">Azul</option>
+                <option value="purple" [ngStyle]="{ 'background-color': 'purple', 'color': 'white' }">Violeta</option>
+                <option value="grey" [ngStyle]="{ 'background-color': 'grey' }">Gris</option>
+                <option value="white" [ngStyle]="{ 'background-color': 'white', 'color': 'black' }">Blanco</option>
+                <option value="gold" [ngStyle]="{ 'background-color': 'gold' }">Dorado</option>
+                <option value="silver" [ngStyle]="{ 'background-color': 'silver' }">Plateado</option>
+                </select>
+              </div>
+              
+
+                <div class="control-group">
+    
+                        <label>Tolerancia</label>
+                        <div>
+                        <label>
+                            <input type="radio" name="colorTolerancia" [(ngModel)]="tolerancia" [value]="'gold'">
+                            Oro
+                        </label>
+                        </div>
+                        <div>
+                        <label>
+                            <input type="radio" name="colorTolerancia" [(ngModel)]="tolerancia" [value]="'silver'">
+                            Plata
+                        </label>
+                    </div>
+                     
+                </div>
+                
+            
+            
+                <button class="btn btn-primary mx-2 my-3" (click)="calculoResistencia()">Calcular</button>
+                
+        </div>
+        <div class="control-group">
+            <table class="table">
+                <thead>
+                    <tr>
+                    <th>Banda 1</th>
+                    <th>Banda 2</th>
+                    <th>Banda 3</th>
+                    <th>Banda 4</th>
+                    <th>Valor</th>
+                    <th>Valor Maximo</th>
+                    <th>Valor Minimo</th>
+                </tr>
+            </thead>
+                <tbody>
+                    <tr>
+                        <td style="background-color: {{linea1}};">{{banda1}}</td>
+                        <td style="background-color: {{linea2}};">{{banda2}}</td>
+                        <td style="background-color: {{linea3}};">{{banda3}}</td>
+                        <td style="background-color: {{tolerancia}};">{{banda4}}</td>
+                        <td>{{valor}}Ω</td>
+                        <td>{{valorMaximo}}Ω</td>
+                        <td>{{valorMinimo}}Ω</td>
+                    </tr>
+                </tbody>
+                
+            </table>
+            
+        </div>
+    </div>
+
+    </div>
