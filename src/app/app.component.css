@@ -1,0 +1,10 @@
+#divcinepolis{
+    background-image: url(https://sic.cultura.gob.mx/images/128015);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 100vh;
+    width: 100%;
+    position: relative;
+
+}
