@@ -7,10 +7,12 @@ import { MResistenciasModule } from './m-resistencias/m-resistencias.module';
 import { McinepolisModule } from './mcinepolis/mcinepolis.module';
 import { MdistanciasModule } from './mdistancias/mdistancias.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MenuComponent } from './menu/menu.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    MenuComponent,
         //CcinepolisComponent,
     //CResistenciasComponent
 
