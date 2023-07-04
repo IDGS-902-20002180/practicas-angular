@@ -1,0 +1,57 @@
+
+.container {
+    
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(255, 245, 100, 0.879);
+  }
+  
+  
+  .section-title {
+    margin-top: 0;
+  }
+  
+  .section-subtitle {
+    margin-top: 1.5rem;
+  }
+  
+  .form-group {
+    margin-bottom: 1.5rem;
+  }
+  
+  .form-group label {
+    font-weight: bold;
+  }
+  
+  .table {
+    margin-top: 1.5rem;
+  }
+  
+  .table th,
+  .table td {
+    vertical-align: middle;
+  }
+  
+  .alert {
+    margin-top: 1.5rem;
+  }
+  
+  .card {
+    margin-top: 1.5rem;
+  }
+  
+  .card-title {
+    margin-bottom: 0;
+  }
+  
+  .card-text {
+    margin-bottom: 0.5rem;
+  }
+  
+  .card-text b {
+    font-weight: bold;
+  }
+  

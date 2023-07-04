@@ -8,6 +8,7 @@ import { McinepolisModule } from './mcinepolis/mcinepolis.module';
 import { MdistanciasModule } from './mdistancias/mdistancias.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MenuComponent } from './menu/menu.component';
+import { MpizzasModule } from './mpizzas/mpizzas.module'; 
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { MenuComponent } from './menu/menu.component';
     MResistenciasModule,
     McinepolisModule,
     MdistanciasModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MpizzasModule
   ],
   providers: [],
   bootstrap: [AppComponent]

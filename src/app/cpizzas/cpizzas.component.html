@@ -1,0 +1,167 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <section>
+        <h2 class="section-title">Registro de Pedido</h2>
+
+        <h3 class="section-subtitle">Datos del Cliente</h3>
+        <!-- Formulario de datos del cliente -->
+        <div class="form-group">
+          <div class="row">
+            <div class="col-md-4">
+              <label for="nombre">Nombre completo:</label>
+            </div>
+            <div class="col-md-8">
+              <input id="nombre" [(ngModel)]="cliente.nombre" type="text" class="form-control" />
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="row">
+            <div class="col-md-4">
+              <label for="direccion">Dirección:</label>
+            </div>
+            <div class="col-md-8">
+              <input id="direccion" [(ngModel)]="cliente.direccion" type="text" class="form-control" />
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="row">
+            <div class="col-md-4">
+              <label for="telefono">Teléfono:</label>
+            </div>
+            <div class="col-md-8">
+              <input id="telefono" [(ngModel)]="cliente.telefono" type="text" class="form-control" />
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="fechaCompra">Fecha de compra:</label>
+          <input id="fechaCompra" [(ngModel)]="cliente.fechaCompra" type="date" class="form-control" />
+        </div>
+
+        <h3 class="section-subtitle">Pizzas</h3>
+        <!-- Formulario de pizzas -->
+        <div class="form-group">
+          <label>Tamaño:</label>
+          <!-- Opciones de tamaño -->
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="tamano" value="Pequeña" [(ngModel)]="tamanoSeleccionado" />
+            <label class="form-check-label">Pequeña - $40</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="tamano" value="Mediana" [(ngModel)]="tamanoSeleccionado" />
+            <label class="form-check-label">Mediana - $80</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="tamano" value="Grande" [(ngModel)]="tamanoSeleccionado" />
+            <label class="form-check-label">Grande - $120</label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="ingredientes">Ingredientes:</label>
+          <!-- Lista de ingredientes -->
+          <div class="checkbox-list">
+            <label class="checkbox" *ngFor="let ingrediente of ingredientesPizza">
+              <input type="checkbox" [(ngModel)]="ingrediente.seleccionado" name="ingredientes" />
+              {{ ingrediente.nombre }} (+{{ ingrediente.precioExtra }} $)
+            </label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="numeroPizzas">Número de pizzas:</label>
+          <input id="numeroPizzas" [(ngModel)]="numeroPizzas" type="number" class="form-control" />
+        </div>
+        <div class="form-group">
+          <button (click)="agregarPizza(tamanoSeleccionado, obtenerIngredientesSeleccionados(), numeroPizzas)" class="btn btn-primary">
+            Agregar
+          </button>
+        </div>
+      </section>
+    </div>
+
+    <div class="col-md-6">
+      <section>
+        <h2 class="section-title">Tabla de Pedidos</h2>
+
+        <!-- Tabla de pedidos -->
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Tamaño</th>
+              <th>Ingredientes</th>
+              <th>Número de Pizzas</th>
+              <th>Subtotal</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let pizza of pizzas; let i = index">
+              <td>{{ pizza.tamano }}</td>
+              <td>{{ pizza.ingredientes.join(", ") }}</td>
+              <td>{{ pizza.numeroPizzas }}</td>
+              <td>{{ pizza.subtotal }}</td>
+              <td>
+                <button (click)="quitarPizza(i)" class="btn btn-danger">Quitar</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div *ngIf="pizzas.length > 0">
+          <p>Total: {{ total }}</p>
+          <button (click)="confirmarPedido()" class="btn btn-success">Confirmar Pedido</button>
+        </div>
+        <div *ngIf="confirmacion" class="mt-3">
+          <p class="alert alert-success">Pedido confirmado. Gracias por su compra.</p>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <section>
+        <h2 class="section-title">Ventas Totales</h2>
+
+        <!-- Ventas totales -->
+        <div *ngIf="confirmacion">
+          <div class="card" style="text-align: center">
+            <div class="card-body">
+              <h3 class="card-title">Ventas totales</h3>
+              <div *ngFor="let venta of ventasDelDia">
+                <p class="card-text">{{ venta.nombre }} Total: {{ venta.total }}</p>
+              </div>
+              <p class="card-text">Total: <b>{{ totalVentasDia }}</b></p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <div class="col-md-6">
+      <section>
+        <h2 class="section-title">Ventas por Día</h2>
+
+        <!-- Ventas por día -->
+        <div class="card" style="text-align: center">
+          <div class="card-body">
+            <h3 class="card-title">Ventas del día</h3>
+            <label for="fecha">Selecciona una fecha:</label>
+            <input type="date" id="fecha" [(ngModel)]="fechaSeleccionada" />
+
+            <div *ngFor="let venta of ventasDelDia">
+              <ng-container *ngIf="venta.fecha === fechaSeleccionada">
+                <p class="card-text">{{ venta.nombre }} Total: {{ venta.total }}</p>
+              </ng-container>
+            </div>
+            <p class="card-text">Total: <b>{{ obtenerTotalVentasPorFecha(fechaSeleccionada) }}</b></p>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
